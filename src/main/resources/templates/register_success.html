@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Success</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container text-center">
+		<h3>To complete your Account Registration Please validate OTP
+			[OTP sent to your Email address]</h3>
+		<p>
+			Your account Number Is: <span th:text="${accountNumber}"></span> And
+			IFSC code Is: <span th:text="${ifsc_code}"></span>
+		</p>
+		<div>
+			<form th:action="@{/validateOTP/{id}(id=${accountNumber})}"
+				th:object="${otp}" method="post"
+				style="max-width: 600px; margin: 0 auto;">
+				<div class="m-3">
+					<div class="form-group row">
+						<label class="col-4 col-form-label">OTP :</label>
+						<div class="col-8">
+							<input type="text" th:field="*{otp}" class="form-control"
+								required minlength="6" maxlength="6" />
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary">Validate
+								OTP</button>
+
+						</div>
+			</form>
+		</div>
+		<h4>
+			<a th:href="@{/login}">Click here to Login</a>
+		</h4>
+	</div>
+
+
+</body>
+</html>
